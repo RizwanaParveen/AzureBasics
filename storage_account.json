@@ -1,5 +1,5 @@
 {
-  "name": "MyStorage",
+  "name": "Mstorage",
   "type": "Microsoft.Storage/storageAccounts",
   "apiVersion": "2019-04-01",
   "sku": {
@@ -11,55 +11,31 @@
     ]
   },
   "kind": "Storage",
-  "location": "West US,
+  "location": "westus",
   "tags": {},
   "identity": {
     "type": "SystemAssigned"
   },
   "properties": {
     "customDomain": {
-      "name": "",
-      "useSubDomainName": "No"
     },
     "encryption": {
       "services": {
         "blob": {
-          "enabled": "Yes"
+          "enabled": true
         },
         "file": {
-          "enabled": "No"
+          "enabled": true
         }
       },
-      "keySource": "0",
-      "keyvaultproperties": {
-        "keyname": "",
-        "keyversion": "",
-        "keyvaulturi": ""
-      }
+      "keySource": "Microsoft.Storage",
+      "keyvaultproperties": {}
     },
     "networkAcls": {
-      "bypass": "0",
-      "virtualNetworkRules": [
-        {
-          "id": "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}",
-          "action": "Allow",
-          "state": ""
-        }
-      ],
-      "ipRules": [
-        {
-          "value": "",
-          "action": "Allow"
-        }
-      ],
-      "defaultAction": "Allow"
     },
-    "accessTier": "",
     "azureFilesIdentityBasedAuthentication": {
-      "directoryServiceOptions": "string"
     },
-    "supportsHttpsTrafficOnly": "true",
-    "isHnsEnabled": "boolean"
+    "supportsHttpsTrafficOnly": true,
   },
   "resources": []
 }
