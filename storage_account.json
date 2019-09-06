@@ -1,41 +1,53 @@
 {
-  "name": "MYRG99",
-  "type": "Microsoft.Storage/storageAccounts",
-  "apiVersion": "2019-04-01",
-  "sku": {
-    "name": "Standard_LRS",
-    "restrictions": [
-      {
-        "reasonCode": "QuotaId"
-      }
-    ]
-  },
-  "kind": "Storage",
-  "location": "westus",
-  "tags": {},
-  "identity": {
-    "type": "SystemAssigned"
-  },
-  "properties": {
-    "customDomain": {
-    },
-    "encryption": {
-      "services": {
-        "blob": {
-          "enabled": true
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "westus"
         },
-        "file": {
-          "enabled": true
+        "storageAccountName": {
+            "type": "azurestorage99"
+        },
+        "accountType": {
+            "type": "Standard_RAGRS"
+        },
+        "kind": {
+            "type": "Storage"
+        },
+        "supportsHttpsTrafficOnly": {
+            "type": "true"
+        },
+		  "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-04-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]"
+            },
+            "dependsOn": [],
+            "sku": {
+                "name": "[parameters('accountType')]",
+				 "restrictions": [
+				{
+					"reasonCode": "QuotaId"
+				}
+		]
+            },
+            "kind": "[parameters('kind')]"
         }
-      },
-      "keySource": "Microsoft.Storage",
-      "keyvaultproperties": {}
-    },
-    "networkAcls": {
-    },
-    "azureFilesIdentityBasedAuthentication": {
-    },
-    "supportsHttpsTrafficOnly": true,
-  },
-  "resources": []
+    ],
+    "outputs": {}
 }
